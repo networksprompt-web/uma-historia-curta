@@ -1,48 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>uma história curta 🍡</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    canvas {
-      display: block;
-    }
-    #hint {
-      position: fixed;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      color: #aaa;
-      font-family: monospace;
-      font-size: 12px;
-      opacity: 0.6;
-    }
-  </style>
-</head>
-<body>
+<script>
+const hint = document.getElementById("hint");
+const audio = document.getElementById("bgm");
 
-  <canvas id="scene"></canvas>
-  <div id="hint">clique para começar</div>
+function startAnimation() {
+  
+  hint.style.opacity = 0;
+  setTimeout(() => hint.style.display = "none", 300); // sumir suave
 
-  <audio id="bgm" src="Memory.mp3"></audio>
+  
+  audio.play().catch(e => {
+    console.log("Clique necessário para iniciar áudio", e);
+  });
+}
 
-  <script src="script.js"></script>
 
-  <script>
-    
-    document.body.addEventListener("click", () => {
-      const audio = document.getElementById("bgm");
-      audio.play();
-      document.getElementById("hint").style.display = "none";
-    }, { once: true });
-  </script>
+document.body.addEventListener("click", startAnimation, { once: true });
+</script>
 
-</body>
-</html>
