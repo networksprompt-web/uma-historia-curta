@@ -3,71 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>uma história curta 🍡</title>
-
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
       background: black;
       overflow: hidden;
       cursor: pointer;
     }
-
     canvas {
       display: block;
     }
-
-    #start {
+    #hint {
       position: fixed;
-      inset: 0;
-      background: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: monospace;
-      font-size: 14px;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
       color: #aaa;
-      opacity: 0.85;
-      transition: opacity 1.5s ease;
-      z-index: 10;
-    }
-
-    #start.fade {
-      opacity: 0;
-      pointer-events: none;
+      font-family: monospace;
+      font-size: 12px;
+      opacity: 0.6;
     }
   </style>
 </head>
-
 <body>
 
   <canvas id="scene"></canvas>
+  <div id="hint">clique para começar</div>
 
-  
-  <div id="start">clique para começar</div>
+  <audio id="bgm" src="Memory.mp3"></audio>
 
-  
-  <audio id="bgm" src="Memory.mp3" loop></audio>
-
- 
   <script src="script.js"></script>
 
-  
   <script>
-    const start = document.getElementById("start");
-    const audio = document.getElementById("bgm");
-
+    
     document.body.addEventListener("click", () => {
-      audio.volume = 0.35; 
+      const audio = document.getElementById("bgm");
       audio.play();
-
-      start.classList.add("fade");
-      setTimeout(() => start.remove(), 1500);
+      document.getElementById("hint").style.display = "none";
     }, { once: true });
   </script>
 
 </body>
 </html>
-
